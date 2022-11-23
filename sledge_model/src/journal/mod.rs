@@ -10,7 +10,7 @@ YYYYY
 */
 
 use crate::audit::Signature;
-use crate::journal::transaction::Transaction;
+use crate::journal::Transaction;
 use chrono::{DateTime, Duration, Utc};
 
 // ------------------------------------------------------------------------------------------------
@@ -50,8 +50,14 @@ pub struct Journal {
 // Modules
 // ------------------------------------------------------------------------------------------------
 
-pub mod split;
+#[doc(hidden)]
+mod split;
+pub use split::Split;
 
-pub mod transaction;
+#[doc(hidden)]
+mod transaction;
+pub use transaction::{Action, ActionId, Transaction, TransactionId};
 
-pub mod reconcile;
+#[doc(hidden)]
+mod reconcile;
+pub use reconcile::Reconciled;

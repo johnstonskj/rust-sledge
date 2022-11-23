@@ -9,9 +9,6 @@ YYYYY
 
 */
 
-use crate::commodity::currency::CurrencyId;
-use crate::commodity::security::InternationalSecuritiesId;
-use chrono::{DateTime, Utc};
 use rust_decimal::Decimal;
 
 // ------------------------------------------------------------------------------------------------
@@ -21,11 +18,6 @@ use rust_decimal::Decimal;
 // ------------------------------------------------------------------------------------------------
 // Public Types
 // ------------------------------------------------------------------------------------------------
-
-/// UN/CEFACT Common Code (3 characters)
-/// http://www.unece.org/fileadmin/DAM/cefact/recommendations/rec20/rec20_Rev9e_2014.xls
-#[derive(Debug)]
-pub struct UnitCode(String);
 
 #[derive(Debug)]
 pub enum CommodityId {
@@ -59,10 +51,18 @@ pub struct Quantity {
 // Modules
 // ------------------------------------------------------------------------------------------------
 
-pub mod currency;
+#[doc(hidden)]
+mod currency;
+pub use currency::{Currency, CurrencyId};
 
-pub mod exchange;
+#[doc(hidden)]
+mod exchange;
+pub use exchange::{Rate, RateRecord, RatedQuantity};
 
-pub mod market;
+#[doc(hidden)]
+mod market;
+pub use market::{Market, MarketIdentifierCode};
 
-pub mod security;
+#[doc(hidden)]
+mod security;
+pub use security::{InternationalSecuritiesId, NationalSecuritiesId, Security};

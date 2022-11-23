@@ -9,8 +9,7 @@ YYYYY
 
 */
 
-use crate::commodity::currency::CurrencyId;
-use crate::commodity::market::MarketId;
+use crate::commodity::{CurrencyId, MarketIdentifierCode};
 
 // ------------------------------------------------------------------------------------------------
 // Public Macros
@@ -68,7 +67,7 @@ pub struct NationalSecuritiesId(String);
 
 #[derive(Debug)]
 pub struct Security {
-    market: MarketId,
+    market: MarketIdentifierCode,
     symbol: Option<String>,
     isin: Option<InternationalSecuritiesId>,
     name: Option<String>,

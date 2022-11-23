@@ -9,7 +9,7 @@ YYYYY
 
 */
 
-// use ...
+use crate::DataStore;
 
 // ------------------------------------------------------------------------------------------------
 // Public Macros
@@ -18,6 +18,8 @@ YYYYY
 // ------------------------------------------------------------------------------------------------
 // Public Types
 // ------------------------------------------------------------------------------------------------
+
+pub struct FileSystemStore {}
 
 // ------------------------------------------------------------------------------------------------
 // Public Functions
@@ -30,6 +32,34 @@ YYYYY
 // ------------------------------------------------------------------------------------------------
 // Implementations
 // ------------------------------------------------------------------------------------------------
+
+impl DataStore for FileSystemStore {
+    type Error = crate::error::Error;
+
+    fn exists(&self) -> bool {
+        todo!()
+    }
+
+    fn init(&self) -> Result<(), Self::Error> {
+        todo!()
+    }
+
+    fn connect(&self) -> Result<(), Self::Error> {
+        todo!()
+    }
+
+    fn ledgers(&self) -> Result<Box<dyn crate::EntityStore>, Self::Error> {
+        todo!()
+    }
+
+    fn journals(&self) -> Result<Box<dyn crate::EntityStore>, Self::Error> {
+        todo!()
+    }
+
+    fn disconnect(&self) -> Result<(), Self::Error> {
+        Ok(())
+    }
+}
 
 // ------------------------------------------------------------------------------------------------
 // Private Functions

@@ -104,5 +104,7 @@ pub trait EntityStore {
 // Modules
 // ------------------------------------------------------------------------------------------------
 
-//#[cfg(feature = "file_system")]
+pub mod error;
+
+//#[cfg(feature = "fs-store")]
 pub mod fs;

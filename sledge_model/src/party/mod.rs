@@ -63,14 +63,22 @@ pub struct Party {
 // Modules
 // ------------------------------------------------------------------------------------------------
 
-pub mod location;
+#[doc(hidden)]
+mod location;
+pub use location::{Address, GeoLocation, GlobalLocationNumber, Location};
 
-pub mod supplier;
+#[doc(hidden)]
+mod supplier;
 
-pub mod customer;
+#[doc(hidden)]
+mod customer;
 
-pub mod organization;
+#[doc(hidden)]
+mod organization;
+pub use organization::{DunsNumber, Isic, LegalEntityId};
 
-pub mod employee;
+#[doc(hidden)]
+mod employee;
 
-pub mod person;
+#[doc(hidden)]
+mod person;

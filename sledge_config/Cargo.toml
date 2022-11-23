@@ -1,0 +1,17 @@
+[package]
+name = "sledge_config"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+
+[dependencies]
+config = { version = "0.13", default-features = false, features = ["yaml"] }
+lazy_static = "1.4"
+semver = { version = "1.0", features = ["serde"] }
+serde = { version = "1.0", features = ["serde_derive"] }
+shellexpand = "2.1"
+tracing = "0.1"
+url = { version = "2.3", features = ["serde"] }
+xdirs = "0.1"
