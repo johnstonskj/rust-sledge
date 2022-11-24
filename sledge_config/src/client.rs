@@ -1,14 +1,3 @@
-/*!
-One-line description.
-
-More detailed description, with
-
-# Example
-
-YYYYY
-
-*/
-
 use crate::StoreConfig;
 use serde::Deserialize;
 use std::str::FromStr;
@@ -29,6 +18,7 @@ pub struct ClientConfig {
 }
 
 #[derive(Debug, Deserialize, Clone)]
+#[serde(rename_all = "snake_case")]
 pub enum ClientKind {
     Local(StoreConfig),
     Remote(RemoteConfig),

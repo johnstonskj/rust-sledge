@@ -1,17 +1,6 @@
-/*!
-One-line description.
-
-More detailed description, with
-
-# Example
-
-YYYYY
-
-*/
-
 use crate::{FileSystemConfig, StoreConfig};
 use serde::Deserialize;
-use std::collections::HashSet;
+use std::{collections::HashSet, path::PathBuf};
 
 // ------------------------------------------------------------------------------------------------
 // Public Macros
@@ -20,6 +9,12 @@ use std::collections::HashSet;
 // ------------------------------------------------------------------------------------------------
 // Public Types
 // ------------------------------------------------------------------------------------------------
+
+#[derive(Debug, Deserialize, Clone)]
+pub struct ServerConfig {
+    bindings: HashSet<Binding>,
+    store: StoreConfig,
+}
 
 #[derive(Debug, Deserialize, Clone, PartialEq, Eq, Hash)]
 pub struct Binding {
@@ -30,16 +25,13 @@ pub struct Binding {
 }
 
 #[derive(Debug, Deserialize, Clone, PartialEq, Eq, Hash)]
-pub struct SslBinding {}
+pub struct SslBinding {
+    private_key_pem_file: PathBuf,
+    certificate_chain_pem_file: PathBuf,
+}
 
 #[derive(Debug, Deserialize, Clone, PartialEq, Eq, Hash)]
 pub struct BindingOptions {}
-
-#[derive(Debug, Deserialize, Clone)]
-pub struct ServerConfig {
-    bindings: HashSet<Binding>,
-    store: StoreConfig,
-}
 
 // ------------------------------------------------------------------------------------------------
 // Public Functions

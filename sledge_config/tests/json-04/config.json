@@ -1,0 +1,13 @@
+{
+  "version": "0.1.0",
+  "server": {
+    "bindings": [
+      { "host": "127.0.0.1", "port": 8080 }
+    ],
+    "store": {
+      "sql": {
+        "connection": "sqlite://sledge/database.sqlite"
+      }
+    }
+  }
+}

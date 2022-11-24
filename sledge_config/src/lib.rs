@@ -1,12 +1,22 @@
 /*!
 Configuration store for Sledge client and server.
 
-More detailed description, with
+The configuration data is stored in JSON, TOML, or YAML files; these files are in a
+folder named `sledge` identified either by the standard
+`XDG_CONFIG_HOME` environment variable or by the app-specific override
+`SLEDGE_CONFIG_ROOT` environment variable. The app looks for files named
+`config.{ext}?`, `server.{ext}`, and `client.{ext}` and if more than one is
+present the data in a later file overrides earlier loaded values.
 
 # Example
 
-YYYYY
+```rust
+# std::env::set_var("SLEDGE_CONFIG_ROOT", "tests");
+use sledge_config::get_config;
 
+let config = get_config().unwrap();
+println!("Config: {:#?}", config);
+```
 
 */
 
@@ -64,6 +74,10 @@ use tracing::{error, trace, trace_span};
 // Public Types
 // ------------------------------------------------------------------------------------------------
 
+///
+/// This is the version expected by this loader, it will be checked during validation for
+/// compatibility.
+///
 pub const CONFIG_FILE_VERSION: Version = Version::new(0, 1, 0);
 
 #[derive(Debug, Deserialize, Clone)]
@@ -155,6 +169,7 @@ fn load_config() -> Result<Configuration, Error> {
     };
 
     match StoredConfig::builder()
+        .add_source(File::with_name(&format!("{}/config", root_str)).required(false))
         .add_source(File::with_name(&format!("{}/server", root_str)).required(false))
         .add_source(File::with_name(&format!("{}/client", root_str)).required(false))
         .add_source(Environment::with_prefix("SLEDGE"))
@@ -193,4 +208,7 @@ pub use server::{Binding, BindingOptions, ServerConfig, SslBinding};
 
 #[doc(hidden)]
 mod store;
-pub use store::{FileSystemConfig, SqlConfig, StoreConfig};
+pub use store::{
+    FileSystemConfig, SqlConfig, Sqlite, SqliteAutoVacuum, SqliteJournalMode, SqliteLockingMode,
+    SqliteSynchronous, StoreConfig,
+};

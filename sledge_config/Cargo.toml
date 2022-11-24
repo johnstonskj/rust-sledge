@@ -7,7 +7,7 @@ edition = "2021"
 
 
 [dependencies]
-config = { version = "0.13", default-features = false, features = ["yaml"] }
+config = { version = "0.13", default-features = false, features = ["json", "toml", "yaml"] }
 lazy_static = "1.4"
 semver = { version = "1.0", features = ["serde"] }
 serde = { version = "1.0", features = ["serde_derive"] }
