@@ -76,8 +76,7 @@ impl Display for Error {
                     "An error occurred in the `config` package; source: {}",
                     source
                 ),
-                Self::ConfigDirUnknown =>
-                    "Could not determine config directory for app".to_string(),
+                Self::ConfigDirUnknown => "Configuration directory unknown".to_string(),
                 Self::ConfigValidationFailed =>
                     "The parsed configuration failed validation".to_string(),
             }

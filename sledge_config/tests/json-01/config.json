@@ -1,12 +1,4 @@
 {
   "version": "0.1.0",
-  "client": {
-    "kind": {
-      "local": {
-        "file_system": {
-          "path": "${HOME}/sledge"
-        }
-      }
-    }
-  }
+  "store": "fsstore:/Users/home/.sledge"
 }

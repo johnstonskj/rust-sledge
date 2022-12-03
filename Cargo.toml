@@ -1,6 +1,4 @@
 [workspace]
-description = "A Simple accounting LEDGEr, GnuCash inspired and Rust powered."
-
 members = [
     "sledge_config",
     "sledge_model",

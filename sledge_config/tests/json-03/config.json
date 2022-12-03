@@ -1,16 +1,4 @@
 {
   "version": "0.1.0",
-  "client": {
-    "kind": {
-      "local": {
-        "sql": {
-          "sqlite": {
-            "path": "/opt/sledge/shared/database.sqlite",
-            "create_if_missing": false,
-            "journal_mode": "write_ahead",
-          }
-        }
-      }
-    }
-  }
+  "store": "sqlite:/opt/sledge/shared/database.sqlite?create_if_missing=false&journal_mode=write_ahead"
 }

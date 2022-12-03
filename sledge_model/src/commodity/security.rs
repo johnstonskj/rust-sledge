@@ -9,7 +9,8 @@ YYYYY
 
 */
 
-use crate::commodity::{CurrencyId, MarketIdentifierCode};
+use crate::commodity::MarketIdentifierCode;
+use codes_iso_4217::CurrencyCode;
 
 // ------------------------------------------------------------------------------------------------
 // Public Macros
@@ -56,22 +57,22 @@ use crate::commodity::{CurrencyId, MarketIdentifierCode};
 ///     10))
 /// ```
 ///
-#[derive(Debug)]
+#[derive(Clone, Debug, PartialEq, Eq)]
 pub struct InternationalSecuritiesId(String);
 
 ///
 /// National Securities Identifying Number (NSIN)
 ///
-#[derive(Debug)]
+#[derive(Clone, Debug, PartialEq, Eq)]
 pub struct NationalSecuritiesId(String);
 
-#[derive(Debug)]
+#[derive(Clone, Debug, PartialEq, Eq)]
 pub struct Security {
     market: MarketIdentifierCode,
     symbol: Option<String>,
     isin: Option<InternationalSecuritiesId>,
     name: Option<String>,
-    base_currency: Option<CurrencyId>,
+    base_currency: Option<CurrencyCode>,
 }
 
 // ------------------------------------------------------------------------------------------------

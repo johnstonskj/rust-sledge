@@ -1,7 +1,0 @@
-version: 0.1.0
-client:
-  kind:
-    local:
-      file_system:
-        path: '${XDG_DOCUMENTS_DIR}/sledge'
-  locale: '${LC_ALL}'

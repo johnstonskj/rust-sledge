@@ -2,12 +2,24 @@
 name = "sledge_store"
 version = "0.1.0"
 edition = "2021"
+default-run = "sledge-store"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
-[features]
-fs-store = []
+[[bin]]
+name = "sledge-store"
+test = false
+bench = false
 
 [dependencies]
+chrono = { version = "0.4", features = ["serde"] }
+semver = { version = "1.0", features = ["serde"] }
+serde = { version = "1.0", features = ["serde_derive"] }
+serde_json = { version = "1.0", features = ["preserve_order"] }
+sledge_config = { version = "0.1", path = "../sledge_config" }
 sledge_model = { version = "0.1", path = "../sledge_model" }
-xdirs = "0.1.1"
+structopt = "0.3"
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = [ "env-filter" ] }
+url = { version = "2.3", features = ["serde"] }
+xdirs = "0.1"

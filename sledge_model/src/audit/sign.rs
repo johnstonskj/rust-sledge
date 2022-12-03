@@ -1,15 +1,4 @@
-/*!
-One-line description.
-
-More detailed description, with
-
-# Example
-
-YYYYY
-
-*/
-
-// use ...
+use chrono::{DateTime, Utc};
 
 // ------------------------------------------------------------------------------------------------
 // Public Macros
@@ -19,16 +8,14 @@ YYYYY
 // Public Types
 // ------------------------------------------------------------------------------------------------
 
-/// ISO-4217
 #[derive(Debug)]
-pub struct CurrencyId(u16);
+pub struct KeyIdentifier(String);
 
 #[derive(Debug)]
-pub struct Currency {
-    iso_number: CurrencyId,
-    iso_code: String,
-    symbol: String,
-    fractional_digits: u8,
+pub struct Signature {
+    identity: KeyIdentifier,
+    signed_on: DateTime<Utc>,
+    binary: Vec<u8>,
 }
 
 // ------------------------------------------------------------------------------------------------

@@ -1,17 +1,24 @@
 [package]
 name = "sledge_config"
+description = ""
 version = "0.1.0"
 edition = "2021"
+repository = "https://github.com/johnstonskj/rust-sledge"
+documentation = "https://docs.rs/sledge_config/"
+license = "MIT"
+readme = "README.md"
+publish = true
 
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[package.metadata.docs.rs]
+targets = ["x86_64-unknown-linux-gnu"]
 
 
 [dependencies]
+codes-iso-4217 = "0.1"
 config = { version = "0.13", default-features = false, features = ["json", "toml", "yaml"] }
 lazy_static = "1.4"
 semver = { version = "1.0", features = ["serde"] }
 serde = { version = "1.0", features = ["serde_derive"] }
-shellexpand = "2.1"
 tracing = "0.1"
 url = { version = "2.3", features = ["serde"] }
 xdirs = "0.1"

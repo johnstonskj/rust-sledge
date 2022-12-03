@@ -9,6 +9,7 @@ YYYYY
 
 */
 
+use codes_iso_4217::CurrencyCode;
 use rust_decimal::Decimal;
 
 // ------------------------------------------------------------------------------------------------
@@ -19,13 +20,13 @@ use rust_decimal::Decimal;
 // Public Types
 // ------------------------------------------------------------------------------------------------
 
-#[derive(Debug)]
+#[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub enum CommodityId {
-    Currency(CurrencyId),
+    Currency(CurrencyCode),
     Security(InternationalSecuritiesId),
 }
 
-#[derive(Debug)]
+#[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct Quantity {
     commodity: CommodityId,
     quantity: Decimal,
@@ -43,6 +44,20 @@ pub struct Quantity {
 // Implementations
 // ------------------------------------------------------------------------------------------------
 
+impl CommodityId {}
+
+impl From<CurrencyCode> for CommodityId {
+    fn from(v: CurrencyCode) -> Self {
+        Self::Currency(v)
+    }
+}
+
+impl From<InternationalSecuritiesId> for CommodityId {
+    fn from(v: InternationalSecuritiesId) -> Self {
+        Self::Security(v)
+    }
+}
+
 // ------------------------------------------------------------------------------------------------
 // Private Functions
 // ------------------------------------------------------------------------------------------------
@@ -50,10 +65,6 @@ pub struct Quantity {
 // ------------------------------------------------------------------------------------------------
 // Modules
 // ------------------------------------------------------------------------------------------------
-
-#[doc(hidden)]
-mod currency;
-pub use currency::{Currency, CurrencyId};
 
 #[doc(hidden)]
 mod exchange;
@@ -66,3 +77,4 @@ pub use market::{Market, MarketIdentifierCode};
 #[doc(hidden)]
 mod security;
 pub use security::{InternationalSecuritiesId, NationalSecuritiesId, Security};
+use serde::{Deserialize, Serialize};

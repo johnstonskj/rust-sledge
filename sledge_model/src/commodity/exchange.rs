@@ -23,7 +23,7 @@ use rust_decimal::Decimal;
 
 pub type Rate = Decimal;
 
-#[derive(Debug)]
+#[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct RateRecord {
     from: CommodityId,
     into: CommodityId,
@@ -32,7 +32,7 @@ pub struct RateRecord {
     source: String,
 }
 
-#[derive(Debug)]
+#[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct RatedQuantity {
     quantity: Quantity,
     rate: Rate,

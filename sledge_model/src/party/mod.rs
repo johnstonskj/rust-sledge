@@ -65,7 +65,7 @@ pub struct Party {
 
 #[doc(hidden)]
 mod location;
-pub use location::{Address, GeoLocation, GlobalLocationNumber, Location};
+pub use location::{Address, CountryCode, GeoLocation, GlobalLocationNumber, Location};
 
 #[doc(hidden)]
 mod supplier;

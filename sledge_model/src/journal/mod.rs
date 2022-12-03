@@ -10,8 +10,8 @@ YYYYY
 */
 
 use crate::audit::Signature;
-use crate::journal::Transaction;
 use chrono::{DateTime, Duration, Utc};
+use codes_iso_4217::CurrencyCode;
 
 // ------------------------------------------------------------------------------------------------
 // Public Macros
@@ -27,6 +27,7 @@ pub struct Journal {
     created: DateTime<Utc>,
     read_only_after: Option<Duration>,
     transactions: Vec<Transaction>,
+    currency: CurrencyCode,
     signature: Option<Signature>,
 }
 

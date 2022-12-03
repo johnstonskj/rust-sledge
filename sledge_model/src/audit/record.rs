@@ -1,17 +1,4 @@
-/*!
-One-line description.
-
-More detailed description, with
-
-# Example
-
-YYYYY
-
-*/
-
-use crate::commodity::{Quantity, RatedQuantity};
-use crate::journal::transaction::TransactionId;
-use crate::ledger::AccountId;
+use chrono::{DateTime, Utc};
 
 // ------------------------------------------------------------------------------------------------
 // Public Macros
@@ -22,12 +9,20 @@ use crate::ledger::AccountId;
 // ------------------------------------------------------------------------------------------------
 
 #[derive(Debug)]
-pub struct Split {
-    id: TransactionId,
-    account: AccountId,
-    quantity: Quantity,
-    exchanged_from: Option<RatedQuantity>,
-    description: Option<String>,
+pub enum AuditEventKind {
+    Created,
+    Modified,
+    Signed,
+    Closed,
+    Deleted,
+}
+
+#[derive(Debug)]
+pub struct AuditEvent {
+    entity: String,
+    kind: AuditEventKind,
+    date_time: DateTime<Utc>,
+    user_id: String,
 }
 
 // ------------------------------------------------------------------------------------------------

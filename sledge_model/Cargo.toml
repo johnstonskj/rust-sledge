@@ -7,5 +7,6 @@ edition = "2021"
 
 [dependencies]
 chrono = { version = "0.4", features = ["serde"] }
+codes-iso-4217 = "0.1"
 rust_decimal = "1.26"
 serde = { version = "1.0", features = ["serde_derive"] }

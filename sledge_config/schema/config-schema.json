@@ -1,0 +1,92 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "http://github.com/johnstonskj/sledge/schema/2022-12/config.json",
+  "title": "Configuration data",
+  "description": "This schema covers the Sledge configuration data files.",
+
+  "type": "object",
+  "properties": {
+    "version": {
+      "description": "The version information describing the schema",
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "store": {
+      "description": "The URI used to connect to a data store",
+      "type": "string",
+      "format": "uri"
+    },
+    "client": {
+      "description": "Client configuration",
+      "type": "object",
+      "properties": {
+        "currency": {
+          "type": "string",
+          "pattern": "^[A-Z]{3}$"
+        },
+        "locale": {
+          "type": "string",
+          "pattern": "^(?<language>[a-z]{2})_(?<region>[A-Z]{2})(?:\\.(?<codeset>[A-Z0-9\\-]+))?(?:@(?<modifier>[a-z0-9\\-]+))?$"
+        }
+      },
+    },
+    "server": {
+      "description": "Server configuration",
+      "type": "object",
+      "properties": {
+        "bindings": {
+          "description": "The name/port pairs bound by the server",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "host": {
+                "type": "string",
+                "anyOf": [
+                  { "format": "hostname" },
+                  { "format": "idn-hostname" },
+                  { "format": "ipv4" },
+                  { "format": "ipv6" }
+                ]
+              },
+              "port": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "ssl": {
+                "description": "Required properties for SSL connections",
+                "type": "object",
+                "properties": {
+                  "private_key_pem_file": { "type": "string", "minLength": 4 },
+                  "certificate_chain_pem_file": { "type": "string", "minLength": 4 },
+                },
+                "required": [
+                  "private_key_pem_file",
+                  "certificate_chain_pem_file"
+                ],
+              },
+              "options": {
+                "description": "Other connection-oriented settings",
+                "type": "object",
+                "properties": {
+                  "backlog": { "type": "integer", "minimum": 64, "maximum": 2048, "default": 2048 },
+                  "max_connections": { "type": "integer", "minimum": 10, "default": 25000 },
+                }
+              }
+            },
+            "required": [ "host",  "port" ]
+          },
+          "minItems": 1
+        },
+      },
+      "required": [ "bindings" ]
+    }
+  },
+  "required": [ "version", "store" ],
+  "additionalProperties": false,
+  "oneOf": [
+     { "required": [ "client" ], "not": { "required": [ "server" ] } },
+     { "required": [ "server" ], "not": { "required": [ "client" ] } },
+     { "required": [ "client", "server" ] }
+  ],
+}

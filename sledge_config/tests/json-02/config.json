@@ -1,12 +1,4 @@
 {
   "version": "0.1.0",
-  "client": {
-    "kind": {
-      "local": {
-        "sql": {
-          "connection": "sqlite://${HOME}/sledge/database.sqlite"
-        }
-      }
-    }
-  }
+  "store": "sqlite://opt/sledge/shared/database.sqlite"
 }

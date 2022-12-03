@@ -69,8 +69,6 @@ YYYYY
 
 pub mod audit;
 
-pub mod account;
-
 pub mod catalog;
 
 pub mod commodity;

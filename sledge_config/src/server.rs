@@ -1,4 +1,3 @@
-use crate::{FileSystemConfig, StoreConfig};
 use serde::Deserialize;
 use std::{collections::HashSet, path::PathBuf};
 
@@ -13,7 +12,6 @@ use std::{collections::HashSet, path::PathBuf};
 #[derive(Debug, Deserialize, Clone)]
 pub struct ServerConfig {
     bindings: HashSet<Binding>,
-    store: StoreConfig,
 }
 
 #[derive(Debug, Deserialize, Clone, PartialEq, Eq, Hash)]
@@ -80,27 +78,10 @@ impl Binding {
 
 // ------------------------------------------------------------------------------------------------
 
-impl Default for SslBinding {
-    fn default() -> Self {
-        Self {}
-    }
-}
-
-// ------------------------------------------------------------------------------------------------
-
-impl Default for BindingOptions {
-    fn default() -> Self {
-        Self {}
-    }
-}
-
-// ------------------------------------------------------------------------------------------------
-
 impl Default for ServerConfig {
     fn default() -> Self {
         Self {
             bindings: Default::default(),
-            store: FileSystemConfig::default().into(),
         }
     }
 }
@@ -108,10 +89,6 @@ impl Default for ServerConfig {
 impl ServerConfig {
     pub fn bindings(&self) -> impl Iterator<Item = &Binding> {
         self.bindings.iter()
-    }
-
-    pub fn store(&self) -> &StoreConfig {
-        &self.store
     }
 
     pub(crate) fn is_valid(&self) -> bool {

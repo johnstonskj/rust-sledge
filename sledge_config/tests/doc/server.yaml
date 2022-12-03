@@ -1,8 +1,6 @@
 version: 0.1.0
+store: fsstore:/Users/home/.local/data/sledge
 server:
-  store:
-    file_system:
-      path: ${XDG_DOCUMENTS_DIR}/sledge
   bindings:
   - host: localhost
     port: 8080
